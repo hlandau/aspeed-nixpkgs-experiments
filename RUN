@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+cp result/bmc-spi.img bmc-spi.img
+chmod +w bmc-spi.img
+
+exec qemu-system-arm \
+  -M romulus-bmc \
+  -nographic \
+  -no-reboot \
+  -drive file=bmc-spi.img,if=mtd,format=raw \
+  -kernel result/kernel/zImage \
+  -dtb qemu.dtb \
+  -append 'console=ttyS4 root=/dev/mtdblock0 rootfstype=squashfs ro init=/bin/init' \
+  -s \
+  -netdev bridge,id=net0,br=br0,helper=./qemu-bridge-helper \
+  -net nic,netdev=net0 \
+  -usb \
+  -drive if=none,id=udrive,format=raw,file=udrive.img \
+  -device usb-storage,drive=udrive
+
+
+
+  -kernel /home/hugo/3pr/linux/arch/arm/boot/zImage \
+  -dtb result/kernel/dtbs/aspeed-ast2500-evb.dtb \
+
+  -blockdev node-name=fmc0,driver=file,filename=bmc-spi.img \
+  -device mx25l25635e,bus=ssi.0,drive=fmc0 \
+
+
+  # loglevel=7 debug earlyprintk
+
+exec qemu-system-arm \
+  -M romulus-bmc \
+  -nographic
+  -drive file=XXX.mtd,if=mtd,format=raw \
+  -no-reboot \
+  -net nic \
+  -net user,tftp=$(realpath .)
+
+
+  -kernel xxx -dtb xxx -initrd xxx -append 'console=ttyS4 root=/XXX'
+
+
+  -usb -drive if=none,id=udrive,format=raw,file=udrive.img
+  -device usb-storage,drive=udrive
+
+# https://www.qemu.org/docs/master/system/arm/aspeed.html
+#   -M romulus-bmc,fmc-model=mx25l25635e,spi-model=mx66u51235f
+#
+#   -M romulus-bmc,execute-in-place
+#
+#   -nodefaults
+#   -blockdev node-name=fmc0 | fmc1 | spi1,driver=file,filename=fmc0.img
+#   -device mx66u51235f,bus=ssi.0,cs=0x0,drive=fmc0
+#
+# https://amboar.github.io/notes/2019/08/29/testing-openbmc-kernels-with-qemu.html
+
+
+# dm-mod.create="vroot,,,ro,123 456 verity 1 /dev/mtdblock0 /dev/mtdblock1 x y z 1 sha256 shshshshshshs"

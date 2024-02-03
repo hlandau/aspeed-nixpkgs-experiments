@@ -1,0 +1,7 @@
+devmem 0x1e6e202c w
+# e.g. 0x00200400
+# disable bit 10 (disable uart debug)
+devmem 0x1e6e202c w 0x00200000
+# confirm effect
+devmem 0x1e6e202c w
+# 0x00200000

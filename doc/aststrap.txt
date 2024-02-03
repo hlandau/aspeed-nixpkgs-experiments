@@ -1,0 +1,29 @@
+Talos II AST2500 Strapping Config
+  FWSPICS0# BMC_FWSPICS0_L  SPI_BMC_FW_CS_L_SECURE        Enable CPU Running    = 1 [pulledup via SPI_BMC_FW_CS_L]    0x1E6E_2070[0]
+  FWSPICK                                                 Enable GPIO Strap Mode= 1
+  FWSPIMOSI                                               Enable SPI Flash Strap Auto Fetch Mode  = 1
+  FWSPIMISO SPI_BMC_FW_MISO_SECURE                        Enable eSPI           = 0 [pulleddown] (LPC mode)           0x1E6E_2070[25]
+  RTCK                                                    Enable eSPI Flash Mode= 0
+  TXD5                                                    Select UART Debug Port= 1 (0=UART1, 1=UART5)                0x1E6E_2070[29]
+  RGMII1TXCTL                                             MAC #1 IF Type=0 (RMII/NCSI)                                0x1E6E_2070[6]
+  RGMII2TXCTL                                             MAC #2 IF Type=0 (RMII/NCSI)                                0x1E6E_2070[7]
+  RGMII1TXD0                                              SPI1 Interface Mode Sel[0]=1 (enable SPI master)            0x1E6E_2070[12]
+  RGMII1TXD1                                              SPI1 Interface Mode Sel[1]=0                                0x1E6E_2070[13]
+  RGMII1TXD2                                              SuperIO config addr sel=0 (addr=0x2e)                       0x1E6E_2070[16]
+  RGMII1TXD3                                              Enable ACPI=0                                               0x1E6E_2070[19]
+  RGMII2TXD0                                              Enable GPIOD passthrough mode=0                             0x1E6E_2070[21]
+  RGMII2TXD1                                              Enable GPIOE passthrough mode=0                             0x1E6E_2070[22]
+  RGMII2TXD2                                              25MHz refclk input mode=0                                   0x1E6E_2070[23]
+  RGMII2TXD3                                              DDR4 SDRAM=1                                                0x1E6E_2070[24]
+
+
+
+  FWSPICS1# BMC_FWSPICS1_L                                [pulledup]
+
+
+
+  AST2500
+    UART1   BMC_COM1_TXD/RXD, flow con, RS232 J7700
+    UART2   BMC_COM2_TXD/RXD, flow con, TTL3.3V header J10116
+    UART5   BMC_COM5_TXD/RXD [0] BMC_COM2_TXD/RXD <-> RS232 J7701
+

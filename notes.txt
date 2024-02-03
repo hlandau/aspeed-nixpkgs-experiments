@@ -1,0 +1,64 @@
+Talos II: MX25L25635F - 256 Mbit - 32 MiB
+  Budget 16 MiB
+
+------------------------ SIDE A     +0
+  bootloader0  128k      ] protectable
+  bootloader1  128k
+  kernel         6M
+  squashfs     8.5M
+  verity       128k
+  userdata       1M
+  (spare/VPD)  384k
+------------------------ SIDE B     +16 MiB
+  bootloader0  128k
+  bootloader1  128k
+  kernel         6M
+  squashfs     8.5M
+  verity       128k
+  userdata       1M
+  (spare/VPD)  384k
+------------------------
+
+
+
+/mnt/cfgstore/
+
+  bmc-config.json
+  http-tls-ecdsa.crt
+  http-tls-ecdsa.key
+  ssh_host_ed25519_key
+
+
+
+Talos II: MX25L25635F - 256 Mbit - 32 MiB
+  Byte        1 B                 Program
+  Page      256 B                 Program     -- transition bits to 0
+  -------------------------------------------------------------------
+  Sector:     4 KiB       Erase
+  HBlock:    32 KiB       Erase
+  Block:     64 KiB       Erase
+  Whole Chip              Erase               -- transition bits to 1
+
+
+  Protection options:
+    Protect first 64 K
+    Protect first 128 K
+    etc.
+
+  4k OTP
+
+
+
+
+
+
+------------------------ SIDE A     +0
+  imboot        64k
+  ssboot        64k
+  k+sfs+v     14.5M
+  userdata       1M
+  VPD          384k
+------------------------ SIDE B     +16 MiB
+  imboot        64k
+  ssboot        64k
+

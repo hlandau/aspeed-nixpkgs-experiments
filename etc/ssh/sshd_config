@@ -1,0 +1,4 @@
+Subsystem sftp internal-sftp
+PermitRootLogin yes
+PrintMotd no
+AuthorizedKeysFile /run/ssh-authorized-keys.d/%u
